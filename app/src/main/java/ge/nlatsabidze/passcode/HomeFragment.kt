@@ -1,5 +1,6 @@
 package ge.nlatsabidze.passcode
 
+import android.view.animation.AlphaAnimation
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +14,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private lateinit var passcode: String
 
     override fun start() {
+
         initRecyclerView()
         setResultToRecyclerView()
         validatePasscode()
@@ -27,9 +29,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setResultToRecyclerView() {
-        listOfNumbers =  mutableListOf(Data(1, ""), Data(2, ""), Data(3, ""), Data(4, ""),
+        listOfNumbers =  mutableListOf(
+            Data(1, ""), Data(2, ""), Data(3, ""), Data(4, ""),
             Data(5, ""), Data(6, ""), Data(7, ""), Data(8, ""), Data(9, ""),
-            Data(R.drawable.ic_touch__id_1, "image"), Data(0, ""), Data(0, "image"))
+            Data(R.drawable.ic_touch__id_1, "Image"), Data(0, ""), Data(R.drawable.ic_vector, "Image")
+        )
 
         itemAdapter.numberList = listOfNumbers
     }
@@ -38,7 +42,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         passcode = ""
         val correctPasscode = "0934"
         var numberOfTries = 0
-        itemAdapter.setOnItemClickListener(object: RecyclerItemAdapter.onItemClickListener{
+        itemAdapter.setOnItemClickListener(object : RecyclerItemAdapter.onItemClickListener {
+
             override fun onItemClick(position: Int) {
                 val currentItem = listOfNumbers[position]
                 passcode += currentItem.number.toString()

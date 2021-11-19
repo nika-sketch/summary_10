@@ -6,27 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/imageButton"
-        android:layout_width="62dp"
-        android:layout_height="59dp"
+    <ImageButton
+        android:id="@+id/button_one"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:background="@drawable/rounded_corner"
+        android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/rounded_corner" />
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        android:id="@+id/button_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/button_one"
+        app:layout_constraintEnd_toEndOf="@+id/button_one"
+        app:layout_constraintStart_toStartOf="@+id/button_one"
+        app:layout_constraintTop_toTopOf="@+id/button_one" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

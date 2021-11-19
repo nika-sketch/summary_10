@@ -49,14 +49,14 @@ class RecyclerItemAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private lateinit var data: Data
         fun onBind() {
             data = numberList[absoluteAdapterPosition]
-            binding.ivImage.setImageResource(data.number)
+            binding.buttonTwo.setImageResource(data.number)
         }
 
-        init {
-            binding.imageButton.setOnClickListener {
-                listener.onItemClick(absoluteAdapterPosition)
-            }
-        }
+//        init {
+//            binding.imageButton.setOnClickListener {
+//                listener.onItemClick(absoluteAdapterPosition)
+//            }
+//        }
     }
 
 
