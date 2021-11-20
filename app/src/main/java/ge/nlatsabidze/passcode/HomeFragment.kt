@@ -1,6 +1,5 @@
 package ge.nlatsabidze.passcode
 
-import android.view.animation.AlphaAnimation
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,9 +29,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun setResultToRecyclerView() {
         listOfNumbers =  mutableListOf(
-            Data(1, ""), Data(2, ""), Data(3, ""), Data(4, ""),
-            Data(5, ""), Data(6, ""), Data(7, ""), Data(8, ""), Data(9, ""),
-            Data(R.drawable.ic_touch__id_1, "Image"), Data(0, ""), Data(R.drawable.ic_vector, "Image")
+                Data(1, ""), Data(2, ""), Data(3, ""), Data(4, ""),
+                Data(5, ""), Data(6, ""), Data(7, ""), Data(8, ""), Data(9, ""),
+                Data(R.drawable.ic_touch__id_1, "Image"), Data(0, ""), Data(R.drawable.ic_vector, "Image")
         )
 
         itemAdapter.numberList = listOfNumbers
@@ -64,6 +63,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     numberOfTries = 0
 
                 }
+            }
+
+            override fun onLastCharacterDeleted(position: Int) {
+                passcode = passcode.dropLast(1)
+                numberOfTries--
+                val changedPasscode = binding.passwordField.text.toString()
+                binding.passwordField.setText(changedPasscode.substring(0, changedPasscode.length - 1))
+                Toast.makeText(requireContext(), passcode, LENGTH_SHORT).show()
             }
         })
     }

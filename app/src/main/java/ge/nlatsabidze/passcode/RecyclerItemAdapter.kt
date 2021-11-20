@@ -17,6 +17,7 @@ class RecyclerItemAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface onItemClickListener {
         fun onItemClick(position: Int)
+        fun onLastCharacterDeleted(position: Int)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener) {
@@ -52,11 +53,11 @@ class RecyclerItemAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.buttonTwo.setImageResource(data.number)
         }
 
-//        init {
-//            binding.imageButton.setOnClickListener {
-//                listener.onItemClick(absoluteAdapterPosition)
-//            }
-//        }
+        init {
+            binding.buttonTwo.setOnClickListener {
+                listener.onLastCharacterDeleted(numberList.size - 1)
+            }
+        }
     }
 
 
