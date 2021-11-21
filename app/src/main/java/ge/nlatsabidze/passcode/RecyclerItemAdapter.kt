@@ -55,7 +55,7 @@ class RecyclerItemAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         init {
             binding.buttonTwo.setOnClickListener {
-                listener.onLastCharacterDeleted(numberList.size - 1)
+                listener.onLastCharacterDeleted(absoluteAdapterPosition)
             }
         }
     }

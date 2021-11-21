@@ -38,40 +38,46 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun validatePasscode() {
-        passcode = ""
-        val correctPasscode = "0934"
-        var numberOfTries = 0
-        itemAdapter.setOnItemClickListener(object : RecyclerItemAdapter.onItemClickListener {
+        with(binding) {
+            passcode = ""
+            val correctPasscode = "0934"
+            var numberOfTries = 0
+            itemAdapter.setOnItemClickListener(object : RecyclerItemAdapter.onItemClickListener {
 
-            override fun onItemClick(position: Int) {
-                val currentItem = listOfNumbers[position]
-                passcode += currentItem.number.toString()
-                numberOfTries++
+                override fun onItemClick(position: Int) {
+                    val currentItem = listOfNumbers[position]
+                    passcode += currentItem.number.toString()
+                    numberOfTries++
 
-                binding.passwordField.setText(passcode)
+                    passwordField.setText(passcode)
 
-                if (numberOfTries == 4 && passcode == correctPasscode) {
-                    Toast.makeText(requireContext(), "Success", LENGTH_SHORT).show()
-                    binding.passwordField.text?.clear()
-                    passcode = ""
-                    numberOfTries = 0
+                    if (numberOfTries == 4 && passcode == correctPasscode) {
+                        Toast.makeText(requireContext(), "Success", LENGTH_SHORT).show()
+                        passwordField.text?.clear()
+                        passcode = ""
+                        numberOfTries = 0
 
-                } else if (numberOfTries == 4 && passcode != correctPasscode) {
-                    Toast.makeText(requireContext(), "Not success", LENGTH_SHORT).show()
-                    binding.passwordField.text?.clear()
-                    passcode = ""
-                    numberOfTries = 0
+                    } else if (numberOfTries == 4 && passcode != correctPasscode) {
+                        Toast.makeText(requireContext(), "Not success", LENGTH_SHORT).show()
+                        passwordField.text?.clear()
+                        passcode = ""
+                        numberOfTries = 0
 
+                    }
                 }
-            }
 
-            override fun onLastCharacterDeleted(position: Int) {
-                passcode = passcode.dropLast(1)
-                numberOfTries--
-                val changedPasscode = binding.passwordField.text.toString()
-                binding.passwordField.setText(changedPasscode.substring(0, changedPasscode.length - 1))
-                Toast.makeText(requireContext(), passcode, LENGTH_SHORT).show()
-            }
-        })
+                override fun onLastCharacterDeleted(position: Int) {
+                    if (passcode.isNotEmpty()) {
+                        passcode = passcode.dropLast(1)
+                        numberOfTries--
+                        val changedPasscode = passwordField.text.toString()
+                        passwordField.setText(changedPasscode.substring(0, changedPasscode.length - 1))
+                        Toast.makeText(requireContext(), passcode, LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Enter Passcode", LENGTH_SHORT).show()
+                    }
+                }
+            })
+        }
     }
 }
